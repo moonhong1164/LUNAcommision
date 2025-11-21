@@ -472,26 +472,6 @@
       opacity: 0.9;
     }
 
-    .price-hover {
-      font-size: 0.73rem;
-      color: var(--muted);
-      margin-top: 7px;
-      border-top: 1px dashed rgba(55, 65, 81, 0.9);
-      padding-top: 5px;
-      opacity: 0;
-      max-height: 0;
-      overflow: hidden;
-      transform: translateY(4px);
-      transition: opacity 0.22s ease, max-height 0.22s ease,
-        transform 0.22s ease;
-    }
-
-    .price-card:hover .price-hover {
-      opacity: 1;
-      max-height: 80px;
-      transform: translateY(0);
-    }
-
     /* 종류 */
 
     .types-grid {
@@ -917,87 +897,59 @@
       <div class="container">
         <h2>커미션 요금</h2>
         <p class="section-subtitle">
-          시간제 상담과 개별 질문 리딩으로 진행되며, 내용에 따라 조정 가능합니다.
+          아래 가격은 <strong>채팅 상담 기준</strong>입니다.<br />
+          전화 상담이 필요하신 경우에는 홍카페 프로필에서 별도 안내를 확인해 주세요.
         </p>
 
         <div class="cards-grid">
-          <!-- 15분 -->
+          <!-- 10분 채팅상담 -->
           <div class="price-card">
-            <div class="price-badge">15 min</div>
-            <div class="price-title">15분 채팅 상담</div>
+            <div class="price-badge">10 min</div>
+            <div class="price-title">10분 채팅 상담</div>
             <div class="price-desc">
-              한 가지 상황을 빠르게 보고 싶은 분들을 위한 옵션입니다.
+              한 가지 상황을 빠르게 확인하고 싶을 때 추천되는 기본 옵션입니다.
             </div>
-            <div class="price-value">10,000원</div>
+            <div class="price-value">12,000원</div>
             <div class="price-meta">
-              · 채팅 상담 약 15분<br />
-              · 핵심 카드 중심 간단 해석
+              · 채팅 상담 약 10분<br />
+              · 핵심 카드 중심 리딩
             </div>
             <div class="price-small">
-              *짧은 질문 1~2개에 적합
-            </div>
-            <div class="price-hover">
-              예) “그 사람과의 관계 흐름만 짧게 보고 싶어요” 등
+              *짧은 질문 1~2개에 적합해요.
             </div>
           </div>
 
-          <!-- 20분 -->
-          <div class="price-card">
-            <div class="price-badge">20 min</div>
-            <div class="price-title">20분 채팅 상담</div>
-            <div class="price-desc">
-              마음·상황·앞으로의 흐름을 함께 보는 기본 리딩입니다.
-            </div>
-            <div class="price-value">15,000원</div>
-            <div class="price-meta">
-              · 채팅 상담 약 20분<br />
-              · 카드 여러 장 사용
-            </div>
-            <div class="price-small">
-              *관계, 감정, 진로 고민 등 전반적인 이야기에 추천
-            </div>
-            <div class="price-hover">
-              예) “지금 이 관계를 계속 이어가도 괜찮을까요?” 같은 질문에 적합합니다.
-            </div>
-          </div>
-
-          <!-- 30분 -->
+          <!-- 30분 채팅상담 -->
           <div class="price-card">
             <div class="price-badge">30 min</div>
             <div class="price-title">30분 채팅 상담</div>
             <div class="price-desc">
-              여러 가지가 한 번에 얽혀 있을 때, 흐름을 길게 보고 싶을 때 선택합니다.
+              감정·상황·앞으로의 흐름을 종합적으로 보고 싶은 분께 추천드립니다.
             </div>
-            <div class="price-value">20,000원</div>
+            <div class="price-value">30,000원</div>
             <div class="price-meta">
               · 채팅 상담 약 30분<br />
-              · 복수 스프레드 활용 가능
+              · 심층 리딩 + 방향 조언
             </div>
             <div class="price-small">
-              *과거·현재·미래 및 선택지 비교 등 심층 리딩에 적합
-            </div>
-            <div class="price-hover">
-              예) “앞으로 6개월 정도의 전반적인 흐름과 조언을 보고 싶어요”
+              *여러 질문이 있거나, 한 주제를 깊이 보고 싶을 때 좋아요.
             </div>
           </div>
 
-          <!-- 개별 질문 -->
+          <!-- 추가 10분 -->
           <div class="price-card">
-            <div class="price-badge">Q&A</div>
-            <div class="price-title">개별 질문 리딩</div>
+            <div class="price-badge">+10 min</div>
+            <div class="price-title">추가 10분</div>
             <div class="price-desc">
-              질문 하나에 집중해 방향만 빠르게 확인하고 싶을 때 이용하세요.
+              진행 중 더 확인하고 싶은 부분이 생겼을 때, 기존 상담에 이어서 연장 가능합니다.
             </div>
-            <div class="price-value">한 질문당 5,000원</div>
+            <div class="price-value">8,000원</div>
             <div class="price-meta">
-              · 단일 질문 한 가지<br />
-              · 짧은 텍스트 + 카드 사진
+              · 기존 리딩 기준에서 추가 10분 연장<br />
+              · 새로운 주제 시작보다는 같은 흐름의 보충용
             </div>
             <div class="price-small">
-              *명확한 한 문장 질문에 가장 잘 맞습니다.
-            </div>
-            <div class="price-hover">
-              예) “이번 연락을 먼저 해 보는 게 좋을까요?” 등
+              *연장이 필요할 경우 리딩 중 별도로 안내드립니다.
             </div>
           </div>
         </div>
@@ -1104,7 +1056,7 @@
             <div class="about-tag">예약 양식</div>
             <ul class="about-list">
               <li>① 이름(또는 닉네임) :</li>
-              <li>② 희망 옵션 (15분 / 20분 / 30분 / 개별 질문) :</li>
+              <li>② 희망 옵션 (10분 / 30분) :</li>
               <li>③ 리딩 종류 (감정 / 관계 / 나의 길 / 시기 중 택1~2) :</li>
               <li>④ 질문 내용 (가능한 한 구체적으로) :</li>
               <li>⑤ 희망 전달 기한 (급한 경우 표시) :</li>
@@ -1147,6 +1099,7 @@
           </div>
 
           <div class="request-note">
+            * 전화 상담 관련 안내 및 신청은 홍카페 프로필에서만 진행합니다.<br />
             * 답장은 일정·컨디션에 따라 조금 늦어질 수 있습니다. 여유를 가지고 기다려 주세요.
           </div>
         </div>
@@ -1173,7 +1126,7 @@
           <h3>SNS 안내</h3>
           <ul>
             <li>인스타그램에서 카드·공지·마감 여부를 확인하실 수 있습니다.</li>
-            <li>홍카페 프로필에서 후기와 진행 스타일을 확인하실 수 있습니다.</li>
+            <li>홍카페 프로필에서 후기와 전화 상담 관련 안내를 확인하실 수 있습니다.</li>
             <li>인스타 DM은 일정 확인용, 실제 신청은 카카오톡으로 부탁드립니다.</li>
           </ul>
           <div class="tos-small">
