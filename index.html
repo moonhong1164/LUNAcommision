@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>청우루나 타로 커미션</title>
+  <style>
+    :root {
+      /* 인디고 메인 + 퍼플 포인트 */
+      --bg: #020617;
+      --bg-soft: rgba(15, 23, 42, 0.96);
+      --card: rgba(15, 23, 42, 0.98);
+
+      --accent: #6366f1; /* indigo */
+      --accent-purple: #a855f7;
+      --accent-soft: rgba(99, 102, 241, 0.25);
+
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+
+      --border: rgba(148, 163, 184, 0.7);
+
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Pretendard",
+        "Noto Sans KR", sans-serif;
+      background:
+        radial-gradient(circle at top, #0b1120 0, transparent 55%),
+        radial-gradient(circle at bottom, #020617 0, #020617 70%);
+      color: var(--text);
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* 배경 별 */
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background-image:
+        radial-gradient(2px 2px at 10% 20%, rgba(248, 250, 252, 0.7) 0, transparent 55%),
+        radial-gradient(1.5px 1.5px at 80% 35%, rgba(129, 140, 248, 0.9) 0, transparent 55%),
+        radial-gradient(1.5px 1.5px at 30% 80%, rgba(168, 85, 247, 0.8) 0, transparent 55%),
+        radial-gradient(2px 2px at 60% 60%, rgba(248, 250, 252, 0.6) 0, transparent 55%);
+      opacity: 0.8;
+      animation: twinkle 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.4; transform: translateY(0); }
+      50% { opacity: 0.9; transform: translateY(-3px); }
+      100% { opacity: 0.55; transform: translateY(2px); }
+    }
+
+    /* 헤더 */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.98),
+        rgba(15, 23, 42, 0.88),
+        transparent
+      );
+      border-bottom: 1px solid rgba(30, 64, 175, 0.6);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+    }
+
+    .logo {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .logo span {
+      font-size: 1.3rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      opacity: 0.85;
+      padding: 6px 10px;
+      border-radius: 999px;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      background-color: rgba(15, 23, 42, 0.98);
+    }
+
+    .nav-cta {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      background: linear-gradient(
+        135deg,
+        rgba(99, 102, 241, 0.4),
+        rgba(168, 85, 247, 0.35)
+      );
+      font-size: 0.85rem;
+      display: none;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    /* 섹션 공통 */
+
+    section {
+      padding: 70px 0;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      font-size: 1.7rem;
+      margin-bottom: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 72px 0 60px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #e5e7eb, #a5b4fc, #c4b5fd);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 22px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      font-size: 0.78rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      background-color: rgba(15, 23, 42, 0.98);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #a855f7, #6366f1);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .btn-primary {
+      border: none;
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 0.93rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(17, 24, 39, 0.9);
+    }
+
+    .btn-secondary {
+      border-radius: 999px;
+      padding: 8px 15px;
+      font-size: 0.86rem;
+      background-color: rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(30, 64, 175, 0.9);
+      border-color: rgba(129, 140, 248, 0.9);
+    }
+
+    .hero-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      opacity: 0.9;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-xl);
+      padding: 18px 16px;
+      background: radial-gradient(circle at top, #020617, #020617 70%);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(30, 64, 175, 0.9);
+      position: relative;
+      overflow: hidden;
+      animation: floatCard 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatCard {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-5px); }
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(129, 140, 248, 0.2), transparent),
+        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.16), transparent);
+      opacity: 0.9;
+      z-index: -1;
+    }
+
+    .hero-card-title {
+      font-size: 0.93rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-card-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .mini-card {
+      border-radius: 14px;
+      padding: 9px;
+      background-color: rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 0.78rem;
+    }
+
+    .mini-card-title {
+      font-weight: 600;
+      margin-bottom: 3px;
+      font-size: 0.8rem;
+    }
+
+    .mini-card-text {
+      color: var(--muted);
+      font-size: 0.74rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      padding-top: 6px;
+      border-top: 1px dashed rgba(55, 65, 81, 0.9);
+      margin-top: 4px;
+    }
+
+    /* 소개 섹션 */
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 24px;
+    }
+
+    .about-card {
+      background-color: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .about-tag {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .about-name {
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+
+    .about-note {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .about-list {
+      font-size: 0.84rem;
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .about-list li {
+      margin-bottom: 6px;
+    }
+
+    .about-highlight {
+      font-size: 0.83rem;
+      margin-top: 10px;
+      padding: 9px;
+      border-radius: 12px;
+      background-color: rgba(15, 23, 42, 0.98);
+      border: 1px dashed rgba(129, 140, 248, 0.9);
+    }
+
+    /* 가격 */
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .price-card {
+      background-color: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 16px 14px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .price-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.98);
+      border-color: rgba(129, 140, 248, 0.95);
+    }
+
+    .price-badge {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background-color: var(--accent-soft);
+      border: 1px solid rgba(129, 140, 248, 0.9);
+    }
+
+    .price-title {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .price-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 9px;
+      min-height: 36px;
+    }
+
+    .price-value {
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+
+    .price-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .price-small {
+      font-size: 0.7rem;
+      color: var(--muted);
+      opacity: 0.9;
+    }
+
+    .price-hover {
+      font-size: 0.73rem;
+      color: var(--muted);
+      margin-top: 7px;
+      border-top: 1px dashed rgba(55, 65, 81, 0.9);
+      padding-top: 5px;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transform: translateY(4px);
+      transition: opacity 0.22s ease, max-height 0.22s ease,
+        transform 0.22s ease;
+    }
+
+    .price-card:hover .price-hover {
+      opacity: 1;
+      max-height: 80px;
+      transform: translateY(0);
+    }
+
+    /* 종류 */
+
+    .types-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+      font-size: 0.82rem;
+    }
+
+    .type-card {
+      background-color: rgba(15, 23, 42, 0.98);
+      border-radius: 14px;
+      padding: 10px 10px 11px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+    }
+
+    .type-title {
+      font-size: 0.86rem;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .type-text {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* 프로세스 */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      font-size: 0.82rem;
+    }
+
+    .step-card {
+      background-color: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 13px 12px;
+      border: 1px solid var(--border);
+    }
+
+    .step-number {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid rgba(129, 140, 248, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      margin-bottom: 5px;
+    }
+
+    .step-title {
+      font-size: 0.88rem;
+      margin-bottom: 3px;
+    }
+
+    .step-text {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    /* 신청 카드 */
+
+    .request-card {
+      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.3),
+        rgba(15, 23, 42, 0.98));
+      border-radius: var(--radius-xl);
+      padding: 20px 18px;
+      border: 1px solid rgba(79, 70, 229, 0.95);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+    }
+
+    .request-title {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+    }
+
+    .request-text {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .request-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 9px;
+    }
+
+    .request-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .link-chip {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      background-color: rgba(15, 23, 42, 0.98);
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .link-chip:hover {
+      background-color: rgba(30, 64, 175, 0.9);
+      transform: translateY(-1px);
+    }
+
+    /* 유의사항 / SNS */
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1.1fr 1.1fr;
+      gap: 18px;
+    }
+
+    .block-card {
+      background-color: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 16px 15px;
+      border: 1px solid var(--border);
+      font-size: 0.84rem;
+    }
+
+    .block-card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .block-card ul {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .block-card li {
+      margin-bottom: 6px;
+    }
+
+    .tos-small {
+      font-size: 0.74rem;
+      color: var(--muted);
+      margin-top: 7px;
+    }
+
+    /* 푸터 */
+
+    footer {
+      padding: 26px 0 38px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(30, 64, 175, 0.6);
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.98), transparent);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* 반응형 */
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 64px;
+        padding-bottom: 52px;
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+
+      .types-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      section {
+        padding: 56px 0;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-cta {
+        display: inline-flex;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .types-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .types-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: 1.85rem;
+      }
+
+      .hero {
+        padding-top: 52px;
+        padding-bottom: 46px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+
+  <!-- 헤더 -->
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <span>🌙</span> 청우루나 타로
+      </div>
+      <nav class="nav-links">
+        <a href="#about">소개</a>
+        <a href="#pricing">요금</a>
+        <a href="#type">종류</a>
+        <a href="#request">신청</a>
+      </nav>
+      <button class="nav-cta" onclick="goToRequest()">신청하기</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div>
+          <div class="badge">
+            <span class="badge-dot"></span> Cheongwoo Luna Tarot
+          </div>
+          <h1 class="hero-title">
+            <span>청우루나 타로</span><br />
+            밤하늘처럼, 마음의 결을 따라가다
+          </h1>
+          <p class="hero-text">
+            맑은 밤의 푸른 공기처럼, 마음의 결도 조용히 흔들릴 때가 있습니다.<br />
+            청우루나 타로는 당신의 <strong>감정, 관계, 그리고 나만의 길</strong>을
+            차분하게 살펴보며<br />
+            지금 이 시기를 어떻게 지나가면 좋을지 함께 고민하는 리딩입니다.
+          </p>
+
+          <div class="hero-badges">
+            <div class="badge">감정 정리 · 마음 읽기</div>
+            <div class="badge">관계의 흐름 · 선택의 갈림길</div>
+            <div class="badge">잔잔하지만 솔직한 리딩</div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="goToRequest()">
+              🌙 신청 / 문의하기
+            </button>
+            <button class="btn-secondary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
+              요금 먼저 보기
+            </button>
+          </div>
+          <div class="hero-note">
+            * 진행 방식 : 카카오톡 채팅 / 텍스트 리딩<br />
+            * 일정과 마감 여부는 신청 시 개별 안내드립니다.
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="hero-card-title">
+            오늘의 루나 노트 ✦
+          </div>
+          <div class="hero-card-sub">
+            실제 커미션에서는 카드 사진과 함께 더 상세한 해석이 전달됩니다.
+          </div>
+
+          <div class="hero-grid">
+            <div class="mini-card">
+              <div class="mini-card-title">감정 · 마음 정리</div>
+              <div class="mini-card-text">
+                내가 지금 어떤 마음인지, 말로 설명하기 어려운 부분을
+                차분히 풀어봅니다.
+              </div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card-title">관계의 거리</div>
+              <div class="mini-card-text">
+                나와 상대 사이의 온도, 서로의 시선을 살펴보고
+                앞으로의 흐름을 봅니다.
+              </div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card-title">나의 방향성</div>
+              <div class="mini-card-text">
+                진로, 인간관계, 일상 선택 등<br />
+                지금 시기에서 놓치고 있는 힌트를 함께 찾습니다.
+              </div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card-title">사용 카드</div>
+              <div class="mini-card-text">
+                라이더웨이트 계열 덱과 감성 덱을 사용하며,<br />
+                질문에 맞게 덱을 선택합니다.
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-meta">
+            <span>상태 : <strong>커미션 OPEN</strong></span>
+            <span>진행 채널 : 카카오톡</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 소개 -->
+    <section id="about">
+      <div class="container">
+        <h2>리더 소개</h2>
+        <p class="section-subtitle">
+          조용하지만 선명하게, 청우루나만의 시선으로 카드를 읽어갑니다.
+        </p>
+
+        <div class="about-layout">
+          <div class="about-card">
+            <div class="about-tag">Tarot Reader</div>
+            <div class="about-name">청우루나</div>
+            <div class="about-note">
+              차분한 톤으로 이야기를 듣고, 카드가 말해주는 흐름을
+              조용히 풀어내는 리딩을 합니다.<br />
+              “괜찮다 / 안 괜찮다”를 단정하기보다는,<br />
+              <strong>지금 나에게 필요한 시선과 태도</strong>에 초점을 맞춥니다.
+            </div>
+            <ul class="about-list">
+              <li>진행 방식 : 텍스트 리딩 + 카드 사진</li>
+              <li>주요 주제 : 감정, 관계, 나의 방향, 일상 고민</li>
+              <li>사용 언어 : 한국어</li>
+            </ul>
+            <div class="about-highlight">
+              💬 리딩 스타일<br />
+              · 부드럽지만 필요한 부분은 솔직하게 이야기합니다.<br />
+              · “지금 여기”에서 할 수 있는 선택을 함께 찾아갑니다.
+            </div>
+          </div>
+
+          <div class="about-card">
+            <div class="about-tag">진행 안내</div>
+            <ul class="about-list">
+              <li>진행 채널 : 카카오톡 오픈채팅</li>
+              <li>결과 전달 : 카드 사진 + 정리된 텍스트</li>
+              <li>추가 질문 : 같은 리딩 내 짧은 질문 1회 가능</li>
+              <li>예약 : 아래 신청 양식 작성 후 카카오톡으로 전송</li>
+            </ul>
+            <div class="about-highlight">
+              📌 이런 분께 어울려요<br />
+              · 마음이 복잡해서 혼자 정리가 안 될 때<br />
+              · 지금 관계의 거리감을 알고 싶을 때<br />
+              · 내 선택이 너무 불안하게만 느껴질 때
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 가격 -->
+    <section id="pricing">
+      <div class="container">
+        <h2>커미션 요금</h2>
+        <p class="section-subtitle">
+          시간제 상담과 개별 질문 리딩으로 진행되며, 내용에 따라 조정 가능합니다.
+        </p>
+
+        <div class="cards-grid">
+          <!-- 15분 -->
+          <div class="price-card">
+            <div class="price-badge">15 min</div>
+            <div class="price-title">15분 채팅 상담</div>
+            <div class="price-desc">
+              한 가지 상황을 빠르게 보고 싶은 분들을 위한 옵션입니다.
+            </div>
+            <div class="price-value">10,000원</div>
+            <div class="price-meta">
+              · 채팅 상담 약 15분<br />
+              · 핵심 카드 중심 간단 해석
+            </div>
+            <div class="price-small">
+              *짧은 질문 1~2개에 적합
+            </div>
+            <div class="price-hover">
+              예) “그 사람과의 관계 흐름만 짧게 보고 싶어요” 등
+            </div>
+          </div>
+
+          <!-- 20분 -->
+          <div class="price-card">
+            <div class="price-badge">20 min</div>
+            <div class="price-title">20분 채팅 상담</div>
+            <div class="price-desc">
+              마음·상황·앞으로의 흐름을 함께 보는 기본 리딩입니다.
+            </div>
+            <div class="price-value">15,000원</div>
+            <div class="price-meta">
+              · 채팅 상담 약 20분<br />
+              · 카드 여러 장 사용
+            </div>
+            <div class="price-small">
+              *관계, 감정, 진로 고민 등 전반적인 이야기에 추천
+            </div>
+            <div class="price-hover">
+              예) “지금 이 관계를 계속 이어가도 괜찮을까요?” 같은 질문에 적합합니다.
+            </div>
+          </div>
+
+          <!-- 30분 -->
+          <div class="price-card">
+            <div class="price-badge">30 min</div>
+            <div class="price-title">30분 채팅 상담</div>
+            <div class="price-desc">
+              여러 가지가 한 번에 얽혀 있을 때, 흐름을 길게 보고 싶을 때 선택합니다.
+            </div>
+            <div class="price-value">20,000원</div>
+            <div class="price-meta">
+              · 채팅 상담 약 30분<br />
+              · 복수 스프레드 활용 가능
+            </div>
+            <div class="price-small">
+              *과거·현재·미래 및 선택지 비교 등 심층 리딩에 적합
+            </div>
+            <div class="price-hover">
+              예) “앞으로 6개월 정도의 전반적인 흐름과 조언을 보고 싶어요”
+            </div>
+          </div>
+
+          <!-- 개별 질문 -->
+          <div class="price-card">
+            <div class="price-badge">Q&A</div>
+            <div class="price-title">개별 질문 리딩</div>
+            <div class="price-desc">
+              질문 하나에 집중해 방향만 빠르게 확인하고 싶을 때 이용하세요.
+            </div>
+            <div class="price-value">한 질문당 5,000원</div>
+            <div class="price-meta">
+              · 단일 질문 한 가지<br />
+              · 짧은 텍스트 + 카드 사진
+            </div>
+            <div class="price-small">
+              *명확한 한 문장 질문에 가장 잘 맞습니다.
+            </div>
+            <div class="price-hover">
+              예) “이번 연락을 먼저 해 보는 게 좋을까요?” 등
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 타로 종류 -->
+    <section id="type">
+      <div class="container">
+        <h2>타로 리딩 종류</h2>
+        <p class="section-subtitle">
+          모든 요금 옵션에서 아래 리딩 종류 중 하나(또는 두 가지)를 선택해 진행할 수 있습니다.
+        </p>
+
+        <div class="types-grid">
+          <div class="type-card">
+            <div class="type-title">💙 감정 타로</div>
+            <div class="type-text">
+              요즘 마음이 왜 이렇게 불안한지, 스스로도 잘 모르겠을 때<br />
+              감정의 근원과 지금 필요한 위로를 함께 봅니다.
+            </div>
+          </div>
+          <div class="type-card">
+            <div class="type-title">🤍 관계 타로</div>
+            <div class="type-text">
+              썸, 연애, 친구, 가족 등 나와 상대의 거리를 보고,<br />
+              서로에게 어떤 영향을 주고 있는지 살펴봅니다.
+            </div>
+          </div>
+          <div class="type-card">
+            <div class="type-title">🌌 나의 길 타로</div>
+            <div class="type-text">
+              진로, 공부, 인간관계 등 삶의 방향이 흐릿하게 느껴질 때,<br />
+              지금 시점에서의 이정표를 함께 찾습니다.
+            </div>
+          </div>
+          <div class="type-card">
+            <div class="type-title">🌓 시기 · 흐름 타로</div>
+            <div class="type-text">
+              언제 움직이는 게 좋을지, 지금은 쉬어갈 타이밍인지 등<br />
+              기간별 분위기와 리듬을 함께 봅니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 진행 방식 -->
+    <section id="process">
+      <div class="container">
+        <h2>진행 방식</h2>
+        <p class="section-subtitle">
+          신청부터 결과를 받아보기까지, 청우루나 타로의 기본 흐름입니다.
+        </p>
+
+        <div class="steps">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-title">신청 양식 작성</div>
+            <div class="step-text">
+              아래 양식을 복사해 카카오톡으로 보내 주세요.<br />
+              (이름, 리딩 종류, 질문 등)
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-title">시간 · 옵션 안내</div>
+            <div class="step-text">
+              가능 여부를 확인한 뒤, 진행 가능 시간과<br />
+              예상 전달일, 금액을 안내드립니다.
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-title">입금 확인 후 리딩</div>
+            <div class="step-text">
+              입금이 확인되면 카드를 펼치고,<br />
+              상황에 맞게 스프레드를 구성해 리딩합니다.
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-title">결과 전달 · Q&A</div>
+            <div class="step-text">
+              카드 사진과 해석을 전달한 뒤,<br />
+              같은 주제 안에서 짧은 추가 질문 1회까지 가능해요.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 신청 섹션 -->
+    <section id="request">
+      <div class="container">
+        <div class="request-card">
+          <div class="request-title">청우루나 타로 신청하기</div>
+          <div class="request-text">
+            아래 양식을 복사해 카카오톡으로 보내 주시면,<br />
+            가능한 일정과 세부 안내를 순차적으로 드립니다.
+          </div>
+
+          <div class="about-card" style="margin:14px auto 12px; max-width:520px;">
+            <div class="about-tag">예약 양식</div>
+            <ul class="about-list">
+              <li>① 이름(또는 닉네임) :</li>
+              <li>② 희망 옵션 (15분 / 20분 / 30분 / 개별 질문) :</li>
+              <li>③ 리딩 종류 (감정 / 관계 / 나의 길 / 시기 중 택1~2) :</li>
+              <li>④ 질문 내용 (가능한 한 구체적으로) :</li>
+              <li>⑤ 희망 전달 기한 (급한 경우 표시) :</li>
+            </ul>
+            <p class="about-highlight" style="margin-top:10px;">
+              질문을 어떻게 적어야 할지 막막하다면,<br />
+              “이런 상황인데, 어떻게 물어보면 좋을까요?”라고 먼저 보내주셔도 괜찮습니다.
+            </p>
+          </div>
+
+          <button class="btn-primary" onclick="goToMainRequest()">
+            🌙 카카오톡 열기
+          </button>
+
+          <div class="request-links">
+            <a
+              class="link-chip"
+              href="https://open.kakao.com/o/sg9cteth"
+              target="_blank"
+              rel="noopener"
+            >
+              💬 청우루나 타로 카카오톡
+            </a>
+            <a
+              class="link-chip"
+              href="https://www.instagram.com/cheongwootarot?igsh=MWM0NmU4ZjMwZXIxaw=="
+              target="_blank"
+              rel="noopener"
+            >
+              📷 인스타그램 @cheongwootarot
+            </a>
+          </div>
+
+          <div class="request-note">
+            * 답장은 일정·컨디션에 따라 조금 늦어질 수 있습니다. 여유를 가지고 기다려 주세요.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 유의사항 & SNS 안내 -->
+    <section>
+      <div class="container two-column">
+        <div class="block-card">
+          <h3>유의사항</h3>
+          <ul>
+            <li>타로 리딩은 의료·법률·투자 상담을 대신할 수 없습니다.</li>
+            <li>극단적인 선택, 생명·건강과 직결된 질문은 받지 않습니다.</li>
+            <li>타 리더님 리딩과 비교/판정하는 용도의 질문은 정중히 거절드립니다.</li>
+          </ul>
+          <div class="tos-small">
+            * 리딩이 마음에 들지 않는다고 해서 환불은 어렵습니다.<br />
+            다만 전달 과정에서의 오해는 대화를 통해 최대한 조정해 드립니다.
+          </div>
+        </div>
+
+        <div class="block-card">
+          <h3>SNS 안내</h3>
+          <ul>
+            <li>인스타그램에서 카드·공지·마감 여부를 확인하실 수 있습니다.</li>
+            <li>피드·스토리로 간단한 카드 메시지를 가끔 업로드합니다.</li>
+            <li>인스타 DM은 일정 확인용, 실제 신청은 카카오톡으로 부탁드립니다.</li>
+          </ul>
+          <div class="tos-small">
+            📷 인스타그램 : <strong>@cheongwootarot</strong><br />
+            링크는 위 신청 섹션에서도 바로 확인하실 수 있어요.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> 청우루나 타로. All rights reserved.</div>
+      <div>Made with 🌙 & Indigo</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function goToRequest() {
+      document.getElementById("request").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function goToMainRequest() {
+      window.open("https://open.kakao.com/o/sg9cteth", "_blank");
+    }
+  </script>
+</body>
+</html>
